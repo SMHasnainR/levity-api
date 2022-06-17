@@ -1,22 +1,28 @@
-.home-header{
-    text-align: center;
+header{
+    /* position: fixed */
+}
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
 }
 
-.home-header h1{
-    font-size: 3rem;
-    color: #0f52ba;
-    margin-bottom: 1rem;
-}
-.home-header h1 span{
-    color: #b0c4de;
-}
-.home-header h2{
-    color: #0080ff;
-    font-size: 2rem;
+.btn-primary{
+    background-color: #0f52ba;
+    border-color: #0f52ba;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
 }
 
-.home-header p{
-    color: #a9a9a9;
-    font-weight: 500;
+.logo{
+    color: #B0C4DE;
+    font-size: 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
 }
 
+.logo span{
+    color: #0F52BA;
+}

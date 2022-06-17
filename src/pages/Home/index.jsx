@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import EmptyList from '../../components/common/EmptyList'
 import BlogList from '../../components/Home/BlogList'
 import Header from '../../components/Home/Header/index'
+import Hero from '../../components/Home/Hero/index'
 import SearchBar from '../../components/Home/SearchBar/index'
 import { blogList } from '../../config/data'
 // import
@@ -31,9 +32,13 @@ const Home = () => {
     return (
     <div>
     
+        
     {/*  Page Header */}
     <Header />
-    
+
+    {/*  Hero Section */}
+    <Hero />
+
     {/*  Search Bar */}
     <SearchBar 
         value={searchKey} 
