@@ -46,9 +46,10 @@ const Home = () => {
         formSubmit={handleSearchSubmit} 
         handleSearchKey={(e)=> setSearchKey(e.target.value)} 
     />
-
-    {/*  Blog List & Empty List */}
-    {  !blogs.length ? <EmptyList /> : <BlogList blogs={blogs} />}   
+    <div className="container">
+        {/*  Blog List & Empty List */}
+        {  !blogs.length ? <EmptyList /> : <BlogList blogs={blogs} />}   
+    </div>
 
 
     </div>

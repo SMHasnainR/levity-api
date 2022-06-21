@@ -1,9 +1,10 @@
 import React from 'react';
 import './style.css';
 
-function Header() {
+
+function Hero() {
   return (
-      <section className='home-header'>
+      <section className='home-hero'>
         <h2>
             Inc. This morning
         </h2>
@@ -15,4 +16,4 @@ function Header() {
   )
 }
 
-export default Header
+export default Hero

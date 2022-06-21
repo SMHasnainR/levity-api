@@ -1,22 +1,30 @@
-.home-header{
+.home-hero{
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #151423;
+    width: 100%;
+    min-height: 440px;
 }
 
-.home-header h1{
-    font-size: 3rem;
+.home-hero h1{
+    font-size: 4rem;
     color: #0f52ba;
     margin-bottom: 1rem;
 }
-.home-header h1 span{
+.home-hero h1 span{
     color: #b0c4de;
 }
-.home-header h2{
+.home-hero h2{
     color: #0080ff;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 
-.home-header p{
+.home-hero p{
     color: #a9a9a9;
     font-weight: 500;
+    font-size: 1.2rem;
 }
 
