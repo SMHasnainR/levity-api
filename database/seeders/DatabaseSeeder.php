@@ -19,12 +19,15 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
+        // Creating One User with it's 3 Posts (each post has conains 3 sub categories and one category)
         User::factory()
         ->has(Post::factory()
             ->sequence(fn() => ['category_id' => Category::factory()->create()])
             ->hasAttached(SubCategory::factory()->count(3))
+            ->hasImage()
             ->count(3)
         )
+        ->hasImage()
         ->create();
 
         // User::factory()

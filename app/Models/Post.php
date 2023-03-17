@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\MorphOne;
 
 class Post extends Model
 {
@@ -38,6 +39,14 @@ class Post extends Model
     public function subcategories(): BelongsToMany
     {
         return $this->belongsToMany(SubCategory::class,'post_subcategory','post_id','subcategory_id');
+    }
+
+     /**
+     * Get the post's image.
+     */
+    public function image(): MorphOne
+    {
+        return $this->morphOne(Image::class, 'imageable');
     }
 
     /**
