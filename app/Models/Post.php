@@ -23,8 +23,8 @@ class Post extends Model
     }
 
     // Belongs to User relationship
-    public function user(){
-        return $this->belongsTo(User::class);
+    public function author(){
+        return $this->belongsTo(User::class,'user_id');
     }
 
     // belongs to category relationship
@@ -55,5 +55,28 @@ class Post extends Model
     protected static function newFactory(): Factory
     {
         return PostFactory::new();
+    }
+
+
+    public static function getFormattedData()
+    {
+        return Post::select(['id', 'title', 'description', 'created_at'])
+        ->with(['category', 'subcategories', 'author' => function ($query) {
+            $query->select(['name']);
+        }])
+            ->get()
+            ->map(function ($post) {
+                return [
+                    'id' => $post->id,
+                    'title' => $post->title,
+                    'category' => $post->category->name,
+                    'subCategory' => $post->subcategories->pluck('name'),
+                    'description' => $post->description,
+                    'authorName' => $post->author->name,
+                    // 'authorAvatar' => $post->author->avatar,
+                    'createdAt' => $post->created_at->format('F d, Y'),
+                    // 'cover' => $post->cover,
+                ];
+            });
     }
 }

@@ -10,7 +10,23 @@ class PostController extends Controller
      // GET api/posts
      public function index()
      {
-         $posts = Post::all();
+        $posts = Post::select(['id', 'title', 'description', 'created_at','user_id','category_id'])
+        ->with(['category', 'subcategories', 'author.image','image'])
+            ->get()
+            ->map(function ($post) {
+                return [
+                    'id' => $post->id,
+                    'title' => $post->title,
+                    'category' => $post->category->name,
+                    'subCategory' => $post->subcategories->pluck('name'),
+                    'description' => $post->description,
+                    'authorName' => $post->author->name,
+                    'authorAvatar' => $post->author->image->path,
+                    'createdAt' => $post->created_at->format('F d, Y'),
+                    'cover' => $post->image->path,
+                ];
+            });
+
          return response()->json(['data' => $posts], 200);
      }
  

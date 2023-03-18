@@ -31,9 +31,10 @@ Route::post('/login',[AuthController::class,'login']);
 // Route::post('/register'[AuthController::class,'register']);
 // Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
 
+Route::apiResource('posts',PostController::class);
+
 Route::group(['middleware'=>'auth:sanctum'], function(){
 
-    Route::apiResource('posts',PostController::class);
     Route::apiResource('posts.comments',CommentController::class)->shallow();
 
 });

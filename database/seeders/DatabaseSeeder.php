@@ -25,9 +25,10 @@ class DatabaseSeeder extends Seeder
             ->sequence(fn() => ['category_id' => Category::factory()->create()])
             ->hasAttached(SubCategory::factory()->count(3))
             ->hasImage()
-            ->count(3)
+            ->count(2)
         )
         ->hasImage()
+        ->count(2)
         ->create();
 
         // User::factory()
