@@ -10,26 +10,10 @@ class PostController extends Controller
      // GET api/posts
      public function index()
      {
-        $posts = Post::select(['id', 'title', 'description', 'created_at','user_id','category_id'])
-        ->with(['category', 'subcategories', 'author.image','image'])
-            ->get()
-            ->map(function ($post) {
-                return [
-                    'id' => $post->id,
-                    'title' => $post->title,
-                    'category' => $post->category->name,
-                    'subCategory' => $post->subcategories->pluck('name'),
-                    'description' => $post->description,
-                    'authorName' => $post->author->name,
-                    'authorAvatar' => $post->author->image->path,
-                    'createdAt' => $post->created_at->format('F d, Y'),
-                    'cover' => $post->image->path,
-                ];
-            });
-
-         return response()->json(['data' => $posts], 200);
+        $posts = Post::getAllFormattedData();
+        return response()->json(['data' => $posts], 200);
      }
- 
+     
      // POST api/posts
      public function store(Request $request)
      {
@@ -40,11 +24,14 @@ class PostController extends Controller
      // GET api/posts/{id}
      public function show($id)
      {
-         $post = Post::find($id);
+        $post = Post::find($id);
+        $post =  $post->getFormatData();
          if (!$post) {
              return response()->json(['message' => 'Post not found'], 404);
          }
-         return response()->json(['data' => $post], 200);
+        //  dd($post->toArray());
+
+        return response()->json(['data' => $post], 200);
      }
  
      // PUT api/posts/{id}

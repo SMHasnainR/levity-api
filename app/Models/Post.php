@@ -13,6 +13,7 @@ class Post extends Model
 {
     use HasFactory;
 
+    protected $with = ['author', 'category'];
 
     protected $guarded = ['id', 'created_at'];
 
@@ -58,12 +59,10 @@ class Post extends Model
     }
 
 
-    public static function getFormattedData()
+    public static function getAllFormattedData()
     {
-        return Post::select(['id', 'title', 'description', 'created_at'])
-        ->with(['category', 'subcategories', 'author' => function ($query) {
-            $query->select(['name']);
-        }])
+        return self::select(['id', 'title', 'description', 'created_at', 'created_at','user_id','category_id'])
+        ->with(['category', 'subcategories', 'author.image','image'])
             ->get()
             ->map(function ($post) {
                 return [
@@ -73,10 +72,30 @@ class Post extends Model
                     'subCategory' => $post->subcategories->pluck('name'),
                     'description' => $post->description,
                     'authorName' => $post->author->name,
-                    // 'authorAvatar' => $post->author->avatar,
+                    'authorAvatar' => $post->author->image->path,
                     'createdAt' => $post->created_at->format('F d, Y'),
-                    // 'cover' => $post->cover,
+                    'cover' => $post->image->path,
                 ];
             });
     }
+
+    public function getFormatData()
+    {
+        return $this->select(['id', 'title', 'description', 'created_at', 'created_at','user_id','category_id'])
+        ->with(['category', 'subcategories', 'author.image','image'])
+            ->get()
+            ->map(function ($post) {
+                return [
+                    'id' => $post->id,
+                    'title' => $post->title,
+                    'category' => $post->category->name,
+                    'subCategory' => $post->subcategories->pluck('name'),
+                    'description' => $post->description,
+                    'authorName' => $post->author->name,
+                    'authorAvatar' => $post->author->image->path,
+                    'createdAt' => $post->created_at->format('F d, Y'),
+                    'cover' => $post->image->path,
+                ];
+            });
+    }    
 }
