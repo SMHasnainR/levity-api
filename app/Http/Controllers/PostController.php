@@ -25,11 +25,10 @@ class PostController extends Controller
      public function show($id)
      {
         $post = Post::find($id);
-        $post =  $post->getFormatData();
+        $post =  $post->getFormatedData();
          if (!$post) {
              return response()->json(['message' => 'Post not found'], 404);
          }
-        //  dd($post->toArray());
 
         return response()->json(['data' => $post], 200);
      }
