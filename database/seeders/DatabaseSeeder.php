@@ -10,6 +10,7 @@ use App\Models\SubCategory;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,8 +29,11 @@ class DatabaseSeeder extends Seeder
             ->count(2)
         )
         ->hasImage()
-        ->count(2)
-        ->create();
+        ->count(1)
+        ->create([
+            'email' => 'hasnain@gmail.com',
+            'password' => Hash::make('12345678')
+        ]);
 
         // User::factory()
         // ->hasPosts(3,function (array $attributes,User $user) {
