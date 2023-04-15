@@ -28,7 +28,8 @@ Route::post('/test2', function (Request $request){
 
 // Authentication Route
 Route::post('/login',[AuthController::class,'login']);
-// Route::post('/register'[AuthController::class,'register']);
+Route::post('/register',[AuthController::class,'register']);
+
 // Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
 Route::post('/auth/login',function(Request $request){
     return $request->all();
