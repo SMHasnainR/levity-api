@@ -52,7 +52,7 @@ class AuthController extends Controller
             'password' => bcrypt($request->input('password')),
         ]);
     
-        event(new Registered($user));
+        // event(new Registered($user));
     
         $token = $user->createToken('auth_token')->plainTextToken;
     
@@ -60,3 +60,4 @@ class AuthController extends Controller
     }
 
 }
+ 

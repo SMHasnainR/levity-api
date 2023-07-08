@@ -26,12 +26,11 @@ class DatabaseSeeder extends Seeder
             ->sequence(fn() => ['category_id' => Category::factory()->create()])
             ->hasAttached(SubCategory::factory()->count(3))
             ->hasImage()
-            ->count(2)
+            ->count(4)
         )
         ->hasImage()
-        ->count(1)
+        ->count(3)
         ->create([
-            'email' => 'hasnain@gmail.com',
             'password' => Hash::make('12345678')
         ]);
 

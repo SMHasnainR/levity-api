@@ -18,13 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/test', function (Request $request){
-    return 'Testign'; 
-});
+// Route::get('/test', function (Request $request){
+//     return 'Testign'; 
+// });
 
-Route::post('/test2', function (Request $request){
-    return 'Testing2'; 
-});
+// Route::post('/test2', function (Request $request){
+//     return 'Testing2'; 
+// });
 
 // Authentication Route
 Route::post('/login',[AuthController::class,'login']);
